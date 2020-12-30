@@ -1,32 +1,46 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>SimpleCRUDApp</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-         <!-- Compiled and minified JavaScript -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-            
-    </head>
-    <body>
-        <nav>
-            <div class="nav-wrapper container">
-              <a href="/" class="brand-logo">SimpleCRUDApp</a>
-              <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="/add-items">Add Items</a></li>
-              </ul>
-            </div>
-          </nav>
+<head>
+  <title>SimpleCRUDApp</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-          <div class="container">
-            <ul class="collection with-header">
-                <li class="collection-header"><h4>ITEMS</h4></li>
-                <li class="collection-item"><div>Book<a href="#!" class="secondary-content"><i class="material-icons">edit</i></a></div></li>
-                <li class="collection-item"><div>Copy<a href="#!" class="secondary-content"><i class="material-icons">edit</i></a></div></li>
-                <li class="collection-item"><div>Pen<a href="#!" class="secondary-content"><i class="material-icons">edit</i></a></div></li>
-                <li class="collection-item"><div>Pencil<a href="#!" class="secondary-content"><i class="material-icons">edit</i></a></div></li>
-            </ul>   
-          </div>
-    </body>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</head>
+
+<body>
+  <nav>
+    <div class="nav-wrapper container">
+      <a href="/" class="brand-logo">SimpleCRUDApp </a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/add-items">Add Items</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <ul class="collection with-header">
+
+      <% if (items.length > 0) { %>
+
+      <% items.forEach(item => { %>
+      <li class="collection-item">
+        <div><%= item.name %> <%= item.price %><a href="#!" class="secondary-content"><i
+              class="material-icons">delete</i><i class="material-icons">edit</i></a></div>
+      </li>
+      <%});%>
+
+
+
+      <% } else {%>
+      <p>There are no items</p>
+      <%}%>
+     
+    </ul>
+  </div>
+</body>
+
 </html>

@@ -7,7 +7,13 @@ app.set('view engine','ejs');
 
 app.get('/',(req,res)=>{
     //res.sendFile('./views/index.html',{root:__dirname});
-    res.render('index');
+    const items = [
+        { name: 'Book', price: 1000},
+        { name: 'Notebook', price: 100},
+        { name: 'Pen', price: 20},
+        { name: 'Pencil', price: 10}
+    ]
+    res.render('index', {items});
 })
 
 app.get('/add-items',(req,res)=>{
