@@ -9,7 +9,8 @@ const mongodb = 'mongodb+srv://root_simplecrud:SimpleCRUDApp@cluster0.ttby9.mong
 
 mongoose.connect(mongodb, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false
 }).then(() => {
     console.log('connected');
     app.listen(3000);
@@ -52,11 +53,20 @@ app.post('/items',(req,res)=>{
 })
 
 app.get('/items/:id',(req,res)=>{
-    console.log(req.params);
+    //console.log(req.params);
     const id =req.params.id;
     Item.findById(id).then(result=>{
-        console.log('result',result);
+        //console.log('result',result);
         res.render('item-detail',{item: result});
+    })
+})
+
+app.get('/delete-item/:id',(req,res)=>{
+    console.log(req.params);
+    const id=req.params.id;
+    console.log(id);
+    Item.findByIdAndRemove(id).then(result=>{
+        res.redirect('/get-items');
     })
 })
 app.use((req, res) => {
