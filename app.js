@@ -2,6 +2,8 @@ const express = require('express')
 const mongoose = require('mongoose');
 const Item = require('./models/items');
 const app = express();
+
+app.use(express.urlencoded({extended: true}));
 const port = 3000;
 const mongodb = 'mongodb+srv://root_simplecrud:SimpleCRUDApp@cluster0.ttby9.mongodb.net/item-database?retryWrites=true&w=majority';
 
@@ -39,6 +41,14 @@ app.get('/get-items', (req, res) => {
 app.get('/add-items', (req, res) => {
     //res.sendFile('./views/add-items.html',{root:__dirname});
     res.render('add-items');
+})
+
+app.post('/items',(req,res)=>{
+    console.log(req.body);
+    const item = Item(req.body);
+    item.save().then(()=>{
+        res.redirect('/get-items');
+    }).catch(err=>(console.log(err)));
 })
 
 app.use((req, res) => {
