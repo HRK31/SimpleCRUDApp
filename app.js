@@ -14,3 +14,7 @@ app.get('/add-items',(req,res)=>{
     //res.sendFile('./views/add-items.html',{root:__dirname});
     res.render('add-items');
 })
+
+app.use((req,res)=>{
+    res.render('error');
+})
