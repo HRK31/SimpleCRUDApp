@@ -15,34 +15,26 @@ mongoose.connect(mongodb, {
 
 app.set('view engine', 'ejs');
 
-app.get('/create-item', (req, res) => {
-    const item = new Item({
-        name: 'computer',
-        price: 100000
-    });
-    item.save().then(result => res.send(result)).catch(err =>
-        console.log(err));
+
+app.get('/', (req, res) => {
+    //res.sendFile('./views/index.html',{root:__dirname});
+    // const items = [
+    //     { name: 'Book', price: 1000 },
+    //     { name: 'Notebook', price: 100 },
+    //     { name: 'Pen', price: 20 },
+    //     { name: 'Pencil', price: 10 }
+    // ]
+    // res.render('index', { items });
+    res.redirect('get-items');
 })
 
 app.get('/get-items', (req, res) => {
-    Item.find().then(result => res.send(result)).catch(err =>
-        console.log(err));
+    Item.find().then(result => {
+        //res.send(result)
+        res.render('index',{items: result})
+    }).catch(err =>console.log(err));
 })
 
-app.get('/get-item', (req, res) => {
-    Item.findById('5fec6db0ddedca1e84ed1b2f').then(result =>
-        res.send(result)).catch(err => console.log(err));
-})
-app.get('/', (req, res) => {
-    //res.sendFile('./views/index.html',{root:__dirname});
-    const items = [
-        { name: 'Book', price: 1000 },
-        { name: 'Notebook', price: 100 },
-        { name: 'Pen', price: 20 },
-        { name: 'Pencil', price: 10 }
-    ]
-    res.render('index', { items });
-})
 
 app.get('/add-items', (req, res) => {
     //res.sendFile('./views/add-items.html',{root:__dirname});
