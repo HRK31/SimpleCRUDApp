@@ -14,8 +14,8 @@
       <% items.forEach(item => { %>
       <li class="collection-item">
         <div><a href="/items/<%= item._id%>"><%= item.name %> ₹<%= item.price %></a><a href="/delete-item/<%=item._id%>"
-            class="secondary-content"><i class="material-icons">delete</i></a><a href="#" class="secondary-content"><i
-              class="material-icons">edit</i></a></div>
+            class="secondary-content"><i class="material-icons">delete</i></a><a href="#edit-modal"
+            class="material-icons modal-trigger secondary-content"><i class="material-icons">edit</i></a></div>
       </li>
       <%});%>
 
@@ -25,6 +25,18 @@
      
     </ul>
   </div>
+  <div id="edit-modal" class="modal">
+    <div class="modal-content">
+      
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.modal');
+      console.log(elems);
+      var instances = M.Modal.init(elems);
+    });
+  </script>
 </body>
 
 </html>
